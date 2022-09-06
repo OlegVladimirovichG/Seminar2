@@ -1,53 +1,83 @@
-﻿/*Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и 
-//           возводит число A в натуральную степень B.
+﻿/*Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
+Напишите программу, которая покажет количество чётных чисел в массиве.
 
-double GetPow(){
-    Console.Write("Введите число: ");
-    double x = Convert.ToDouble(Console.ReadLine());
-    double p = 1;
-    Console.Write("Введите степерь: ");
-    int y = Convert.ToInt32(Console.ReadLine());
-    for (int i = 0; i < y; i++){
-        p *= x;
+int[] RandomArray(int size = 8){
+    int[] array = new int[size];
+    for (int i = 0; i < array.Length; i++){
+        array[i] = new Random().Next(100, 1000);
     }
-    return p;
+    return array;
 }
-System.Console.WriteLine(GetPow());
 
-//*************************************************************************************
-//**************************************************************************************
-//**************************************************************************************
+int GetCount(int[] array){
+    int count = 0;
+    for (int i = 0; i < array.Length; i++){
+        if (array[i] % 2 == 0){
+            count += 1;
+        }
+    }    
+    return count;
+}
+int[] arr = RandomArray();
+
+Console.WriteLine(string.Join(", ", arr));
+Console.WriteLine(GetCount(arr)); 
 
 
-//Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
 
-int GetSum(){
-    int a = Convert.ToInt32(Console.ReadLine());
-    int  sum = 0;
-    while (a > 0){
-        sum += a % 10;
-        a /= 10;
+Задача 36: Задайте одномерный массив, заполненный случайными числами. 
+Найдите сумму элементов, стоящих на нечётных позициях. 
+
+int[] RandomArray(int size = 8){
+    int[] array = new int[size];
+    for (int i = 0; i < array.Length; i++){
+        array[i] = new Random().Next(100, 1000);
     }
-    return sum;
+    return array;
 }
-System.Console.WriteLine(GetSum());
+
+int GetCount(int[] arr){
+    int count = 0;
+    for (int i = 1; i < arr.Length; i += 2){
+        count += arr[i];
+    }    
+    return count;
+}
+int[] arr = RandomArray();
+
+Console.WriteLine(string.Join(", ", arr));
+Console.WriteLine(GetCount(arr)); 
 
 
-//*************************************************************************************
-//**************************************************************************************
-//**************************************************************************************
 
 
-Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.*/
+Задача 38: Задайте массив вещественных чисел. 
+Найдите разницу между максимальным и минимальным элементов массива. */
 
-int[] GetArray(int size =8){
-    int[] arr = new int[size];
-    for (int i = 0; i < arr.Length; i++){
-        arr[i] = new Random().Next(10);
+
+double[] GetArray(int size = 8){
+    double[] array = new double[size];
+    for (int i = 0; i < array.Length; i++){
+        array[i] = new Random().Next(1, 100) / 10.0;
     }
-    return arr;
+    return array;
 }
 
-foreach (var item in GetArray()){
-    System.Console.WriteLine(item);
+double GetMaxMin(double[] array){
+    double res = 0;
+    double min = array[0];
+    double max = array[0];
+    for (int i = 0; i < array.Length; i++){
+        if (array[i] > max){
+            max = array[i];
+        }        
+        if (array[i] < min){
+            min = array[i];
+        }
+    }
+    res = max - min;
+    return res;
 }
+double[] arr = GetArray();
+Console.WriteLine(string.Join(", ", arr));
+Console.WriteLine(GetMaxMin(arr));
